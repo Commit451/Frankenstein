@@ -30,6 +30,7 @@ class RelaunchExceptionHandler implements Thread.UncaughtExceptionHandler {
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100,
                 pendingIntent);
 
+        //still call the default to allow it to do its thing
         handler.uncaughtException(t, e);
     }
 }
