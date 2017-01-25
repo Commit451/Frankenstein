@@ -21,6 +21,7 @@ public class Frankenstein {
 
     /**
      * Register for {@link Frankenstein} to relaunch the DEFAULT intent when there is a crash.
+     *
      * @param context the application context
      */
     public static void register(@NonNull Context context) {
@@ -29,11 +30,12 @@ public class Frankenstein {
 
     /**
      * Register for {@link Frankenstein} to relaunch the given intent when there is a crash.
+     *
      * @param context the application context
-     * @param intent the intent you want to launch when the app crashes
+     * @param intent  the intent you want to launch when the app crashes
      */
     public static void register(@NonNull Context context, @NonNull Intent intent) {
-        if (context instanceof Application) {
+        if (!(context instanceof Application)) {
             throw new IllegalArgumentException("You need to pass the application context");
         }
         Thread.UncaughtExceptionHandler defaultHandler = Thread.getDefaultUncaughtExceptionHandler();
