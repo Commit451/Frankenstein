@@ -24,6 +24,13 @@ Frankenstein.register(this, new Intent(this, LaunchActivity.class));
 ```
 Make sure to call this after setting up any Crash reporting software such as Fabric. Now later, if your app crashes, your `LaunchActivity` will be launched
 
+Android Studio clears LogCat when the app is restarted, so, you might want to surround the registration with a non-debug check:
+```java
+if (!BuildConfig.DEBUG) {
+    Frankenstein.register(this);
+}
+```
+
 # Why?
 It is great to keep things mostly stateless in an Android app, but there are times when you need to load something important when the app launches, and keep a reference to that thing throughout the life of the app. If you application crashes, you will lose all static memory, which is typically where these things reside.
 
