@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -18,6 +20,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 throw new IllegalArgumentException("blah");
+            }
+        });
+        findViewById(R.id.button_crash_delayed).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        throw new IllegalStateException("Blah");
+                    }
+                }, TimeUnit.SECONDS.toMillis(3));
             }
         });
     }

@@ -21,4 +21,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crash" />
+
+    <Button
+        android:id="@+id/button_crash_delayed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crash in 3 seconds" />
 </LinearLayout>

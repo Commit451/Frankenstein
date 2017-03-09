@@ -36,6 +36,9 @@ It is great to keep things mostly stateless in an Android app, but there are tim
 
 *Only use this if you really do need it*
 
+# Backgrounded
+It is important to note that if the app were to crash in the background, it would relaunch into the foreground, which could be frustrating for your user. The sample shows how to counteract this using another library, [Lifeline](https://github.com/Commit451/Lifeline). All this setup takes place in the `App` class.
+
 License
 --------
 

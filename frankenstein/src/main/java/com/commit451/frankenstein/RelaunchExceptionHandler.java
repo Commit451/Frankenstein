@@ -9,6 +9,7 @@ class RelaunchExceptionHandler implements Thread.UncaughtExceptionHandler {
 
     private Context context;
     private Intent intent;
+    private RelaunchChecker relaunchChecker;
     private Thread.UncaughtExceptionHandler handler;
 
     RelaunchExceptionHandler(Context context, Intent relaunchIntent, Thread.UncaughtExceptionHandler defaultUncaughtExceptionHandler) {
@@ -20,15 +21,21 @@ class RelaunchExceptionHandler implements Thread.UncaughtExceptionHandler {
         handler = defaultUncaughtExceptionHandler;
     }
 
+    void setRelaunchChecker(RelaunchChecker relaunchChecker) {
+        this.relaunchChecker = relaunchChecker;
+    }
+
     @Override
     public void uncaughtException(Thread t, Throwable e) {
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
+        if (relaunchChecker.shouldRelaunch()) {
+            PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT);
 
-        //Restart app after some time
-        AlarmManager mgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100,
-                pendingIntent);
+            //Restart app after some small amount of time
+            AlarmManager mgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100,
+                    pendingIntent);
+        }
 
         //still call the default to allow it to do its thing
         handler.uncaughtException(t, e);
