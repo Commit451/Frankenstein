@@ -11,13 +11,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.commit451.frankenstein.sample.MainActivity">
 
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switchShouldRelaunch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Should Relaunch"/>
-
     <TextView
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
@@ -34,10 +27,4 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crash in 3 seconds" />
-
-    <Button
-        android:id="@+id/buttonSecondActivity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Launch Second Activity" />
 </LinearLayout>

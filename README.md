@@ -32,7 +32,7 @@ if (!BuildConfig.DEBUG) {
 ```
 
 # Why?
-It is great to keep things mostly stateless in an Android app, but there are times when you need to load something important when the app launches, and keep a reference to that thing throughout the life of the app. If you application crashes, you will lose all static memory, which is typically where these things reside.
+It is great to keep things mostly stateless in an Android app, but there are times when you need to load something important when the app launches, and keep a reference to that thing throughout the life of the app. If you application crashes, you will lose all static memory, which is typically where these things reside. There are of course other ways of handling this problem, such as checking the overall state of the app in the onResume of a base activity, or something similar, but this is a quick solution to this issue and allows you to not have to care about the base activity.
 
 **Only use this if you really do need it**
 
